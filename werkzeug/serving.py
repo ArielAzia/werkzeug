@@ -474,6 +474,9 @@ class BaseWSGIServer(HTTPServer, object):
     def get_request(self):
         con, info = self.socket.accept()
         return con, info
+    
+    def shutdown_request(self,request):
+        request.shutdown()
 
 
 class ThreadedWSGIServer(ThreadingMixIn, BaseWSGIServer):
